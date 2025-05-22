@@ -668,11 +668,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"7dWZ8":[function(require,module,exports,__globalThis) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-var _webImmediateJs = require("core-js/modules/web.immediate.js"); // addOne.addEventListener("click", function () {
- //   console.log(recipe.ingredients.unit);
- //   alert("hi");
- // });
- ///////////////////////////////////////
+var _webImmediateJs = require("core-js/modules/web.immediate.js"); ///////////////////////////////////////
  // https://forkify-api.herokuapp.com/v2
 var _iconsSvg = require("url:../img/icons.svg");
 var _iconsSvgDefault = parcelHelpers.interopDefault(_iconsSvg);
@@ -819,10 +815,12 @@ const loadSearchResult = async function() {
     const searchQuery = searchField.value;
     if (!searchQuery) return;
     try {
+        renderSpinner(searchResult);
         const res = await fetch(`${(0, _config.API_URL)}?search=${searchQuery}`);
         const data = await res.json();
         const { recipes } = data.data;
         if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+        console.log(data);
         const markups = recipes.map((recipe)=>{
             return `
         <li class="preview">
@@ -854,10 +852,6 @@ searchBtn.addEventListener("click", function(e) {
     e.preventDefault();
     loadSearchResult();
 });
-// Change Servings
-const addOne = document.querySelector(".btn--increase-servings");
-console.log(addOne);
-const removeOne = document.querySelector(".btn--decrease-servings");
 
 },{"core-js/modules/web.immediate.js":"bzsBv","url:../img/icons.svg":"fd0vu","regenerator-runtime/runtime":"f6ot0","./config":"2hPh4","@parcel/transformer-js/src/esmodule-helpers.js":"jnFvT"}],"bzsBv":[function(require,module,exports,__globalThis) {
 'use strict';

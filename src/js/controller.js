@@ -155,10 +155,12 @@ const loadSearchResult = async function () {
   const searchQuery = searchField.value;
   if (!searchQuery) return;
   try {
+    renderSpinner(searchResult);
     const res = await fetch(`${API_URL}?search=${searchQuery}`);
     const data = await res.json();
     const { recipes } = data.data;
     if (!res.ok) throw new Error(`${data.message} (${res.status})`);
+    console.log(data);
 
     const markups = recipes.map((recipe) => {
       return `
